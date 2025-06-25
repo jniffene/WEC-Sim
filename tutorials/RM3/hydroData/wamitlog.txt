@@ -1,0 +1,100 @@
+
+WAMITLOG.TXT file from WAMIT run:  06-Oct-2019 14:21:46
+
+ Input file config.wam
+ generic configuration file:  config.wam
+ RAMGBMAX=6.0
+ NCPU=8
+ USERID_PATH=\wamitv7\license   (directory for *.exe, *.dll, and userid.wam)
+ LICENSE_PATH=\wamitv7\license
+
+
+ Input file rm3.cfg
+ ipltdat=5
+ maxscr=1024  (assign a maximum block of 1024*1024 RAM for scratch LHS)
+ ISOR=0       (omit ISOR in POT file, include source formulation)
+ ISOLVE=1     (use iterate solver)
+ ISCATT=0     (solve for total diffraction potential, not scattering)
+ ILOG=1       (omit ILOG in POT file, integrate log singularity)
+ IRR =1
+ IPERIN=2     (input frequencies in radians per second)
+ ILOWHI=0     (use high-order panel method)
+ ILOWGDF=0    (write low order gdf)
+ IALTPOT=2
+ RAMGBMAX=8.0
+ INUMOPT5=1
+ PANEL_SIZE=20.0 (average length of panel)
+ MONITR=0     (do not write FORCE output data to monitor)
+ NUMHDR=1     (write headers to numeric output files)
+
+POTEN run started:  06-Oct-2019 14:21:46
+
+ Input file rm3.pot
+rm3.pot -- file type .gdf, ILOWHI=0, IRR=1
+0.                             HBOT
+1           1                  	IRAD, IDIFF
+ -262                         	NPER
+ -0.077 0.077                    PER
+  1                          	NBETA
+0.0                       	BETA
+ 2 				NBODY
+float.gdf
+ 0.0 0.0 -0.048 0.0 		XBODY(1-4)
+ 1  1  1  1  1  1               IMODE(1-6)
+spar.gdf
+ 0.0 0.0 -1.41933 0.0 		XBODY(1-4)
+ 1  1  1  1  1  1               IMODE(1-6)
+
+ First    10 lines of input file float.gdf
+Rhino->WAMIT file export (mesh)
+1 9.80665 	ULEN GRAV
+0  0 	ISX  ISY
+2736
+  0.23245 -0.02033 0.04800
+  0.19923 -0.01743 0.04800
+  0.19697 -0.03473 0.04800
+  0.22978 -0.04052 0.04800
+  0.22978 -0.04052 0.04800
+  0.19697 -0.03473 0.04800
+
+ First    10 lines of input file spar.gdf
+Rhino->WAMIT file export (mesh)
+1 9.80665 	ULEN GRAV
+0  0 	ISX  ISY
+4320
+  0.00000 0.00000 1.41933
+  0.06565 -0.01158 1.41933
+  0.06642 -0.00582 1.41933
+  0.06642 -0.00582 1.41933
+  0.00000 0.00000 1.41933
+  0.06440 -0.01725 1.41933
+
+
+ Number of processors used :   8
+
+ Estimated RAM used :   3.     Gigabytes
+
+  POTEN module run completed
+
+POTEN run completed:  06-Oct-2019 15:19:49
+
+FORCE run started:  06-Oct-2019 15:19:49
+
+ Input file rm3.frc
+ rm3.frc -- file type .gdf, ILOWHI=0, IRR=1
+ 1    0    2    0    0    0    0    0    0   IOPTN(1-9)
+ 0                   VCG(1)
+ 0.000000      .0000000      .0000000
+ .0000000      0.000000      .0000000
+ .0000000      .0000000      0.000000        XPRDCT
+ 0                   VCG(2)
+ 0.000000      .0000000      .0000000
+ .0000000      0.000000      .0000000
+ .0000000      .0000000      0.000000        XPRDCT
+ 0                                           NBETAH
+ 0                                           NFIELD
+
+
+FORCE run completed:  06-Oct-2019 15:20:17
+
+  WAMIT run completed
