@@ -1,0 +1,52 @@
+%% Simulation Data
+simu = simulationClass();             
+simu.simMechanicsFile = 'RM3MoorDyn.slx';
+simu.mode = 'accelerator';                
+simu.explorer = 'off';
+simu.rampTime = 40;
+simu.endTime = 400;
+simu.dt = 0.01;
+simu.dtOut = 0.1;
+simu.cicDt = 0.05;
+simu.solver = 'ode45';
+simu.paraview.option = 0;
+simu.domainSize = 300;
+simu.mcrMatFile = 'etaData_mcr_cases.mat';   
+
+%% Wave Information
+waves = waveClass('elevationImport');        % user-defined time series
+waves.elevationFile = 'etaData_segment_1.mat';  
+waves.waterDepth = 70;
+
+%% Body Data
+% Float
+body(1) = bodyClass('hydroData/RM3Cylinder.h5');
+body(1).geometryFile = 'geometry/cylinder.stl';
+body(1).mass = 'equilibrium';
+body(1).inertia = [20907301 21306090.66 37085481.11];
+
+% Spar/Plate
+body(2) = bodyClass('hydroData/RM3Cylinder.h5');
+body(2).geometryFile = 'geometry/plate.stl';
+body(2).mass = 'equilibrium';
+body(2).inertia = [94419614.57 94407091.24 28542224.82];
+body(2).initial.displacement = [0 0 -0.21];  	% Initial Displacement
+
+%% PTO and Constraint Parameters
+% Floating (3DOF) Joint
+constraint(1) = constraintClass('Constraint1'); 
+constraint(1).location = [0 0 0];                   
+
+% Translational PTO
+pto(1) = ptoClass('PTO1');                      
+pto(1).stiffness=0;                                     
+pto(1).damping=1200000;                               
+pto(1).location = [0 0 0];                           
+
+%% Mooring
+% Moordyn
+mooring(1) = mooringClass('mooring');       	% Initialize mooringClass
+mooring(1).moorDyn = 1;                         % Initialize MoorDyn
+mooring(1).moorDynLines = 3;                	% Specify number of lines
+mooring(1).moorDynNodes = [21 21 21];       	% Specify number of nodes per line
+mooring(1).initial.displacement = [0 0 -21.29-.21]; % Initial Displacement (includes body cg and body initial displacement)
